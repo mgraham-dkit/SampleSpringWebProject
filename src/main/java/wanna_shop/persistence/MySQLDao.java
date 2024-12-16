@@ -1,5 +1,7 @@
 package wanna_shop.persistence;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,6 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Properties;
 
+@Slf4j
 public class MySQLDao {
     private Properties properties;
     private Connection conn;
@@ -27,10 +30,8 @@ public class MySQLDao {
             // Load in all key-value pairs from properties file
             properties.load(new FileInputStream(rootPath));
         }catch(IOException e){
-            System.out.println("An exception occurred when attempting to load properties from \"" + propertiesFilename + "\": " + e.getMessage());
-            e.printStackTrace();
+            log.error("An exception occurred when attempting to load properties from: " + propertiesFilename, e);
         }
-
     }
 
     public Connection getConnection(){
@@ -50,15 +51,10 @@ public class MySQLDao {
                 Connection conn = DriverManager.getConnection(url+database, username, password);
                 return conn;
             }catch(SQLException e){
-                System.out.println(LocalDateTime.now() + ": An SQLException  occurred while trying to connect to the " + url +
-                        "database.");
-                System.out.println("Error: " + e.getMessage());
-                e.printStackTrace();
+                log.error("An SQLException  occurred while trying to connect to the " + url + " database.", e);
             }
         }catch(ClassNotFoundException e){
-            System.out.println(LocalDateTime.now() + ": A ClassNotFoundException occurred while trying to load the MySQL driver.");
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
+            log.error("A ClassNotFoundException occurred while trying to load the MySQL driver.", e);
         }
         return null;
     }

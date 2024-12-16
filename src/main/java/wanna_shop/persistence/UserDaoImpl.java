@@ -1,10 +1,12 @@
 package wanna_shop.persistence;
 
+import lombok.extern.slf4j.Slf4j;
 import wanna_shop.model.User;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 
+@Slf4j
 public class UserDaoImpl extends MySQLDao implements UserDao{
     public UserDaoImpl(){
         super();
@@ -47,8 +49,7 @@ public class UserDaoImpl extends MySQLDao implements UserDao{
                 }
             }
         }catch(SQLException e){
-            System.out.println(LocalDateTime.now() + ": \tAn error occurred when logging in user with username: " + username);
-            e.printStackTrace();
+            log.error("An error occurred when logging in user with username: " + username, e);
         }
 
         super.freeConnection(conn);
@@ -78,14 +79,9 @@ public class UserDaoImpl extends MySQLDao implements UserDao{
                 added = true;
             }
         }catch(SQLIntegrityConstraintViolationException e){
-            System.out.println(LocalDateTime.now() + ": \tA foreign key constraint failed when registering new user" +
-                    " " +
-                    "with " +
-                    "username: " + user.getUsername());
-            e.printStackTrace();
+            log.error("A foreign key constraint failed when registering new user with username: " + user.getUsername(), e);
         }catch(SQLException e){
-            System.out.println(LocalDateTime.now() + ": \tAn error occurred when registering new user with username: " + user.getUsername());
-            e.printStackTrace();
+            log.error("An error occurred when registering new user with username: " + user.getUsername(), e);
         }
 
         super.freeConnection(conn);
@@ -129,5 +125,7 @@ public class UserDaoImpl extends MySQLDao implements UserDao{
         }else{
             System.out.println("Failed :(");
         }
+
+        userDao.login("michelle", "passpass");
     }
 }
