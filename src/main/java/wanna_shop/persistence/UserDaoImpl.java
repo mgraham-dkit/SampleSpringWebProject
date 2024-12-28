@@ -31,7 +31,8 @@ public class UserDaoImpl extends MySQLDao implements UserDao{
 
         Connection conn = super.getConnection();
         User result = null;
-        String sql = "SELECT * FROM users where username = ? AND password = ?";
+        // Collation here changes the comparison of the password from case insensitive to case sensitive!
+        String sql = "SELECT * FROM users where username = ? AND password COLLATE utf8mb4_bin = ?";
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(1, username);
             ps.setString(2, password);
@@ -126,6 +127,6 @@ public class UserDaoImpl extends MySQLDao implements UserDao{
             System.out.println("Failed :(");
         }
 
-        userDao.login("michelle", "passpass");
+        System.out.println("Login attempted: " + userDao.login("mgraham", "password1"));
     }
 }
