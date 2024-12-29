@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Home</title>
+</head>
+<body>
+    <!-- Include the menu bar fragment -->
+    <div th:replace="~{fragments/menu :: menu-bar}"></div>
+    <p th:if="${message != null}" th:text="${message}"></p>
+    <div>
+        Welcome to wanna shop! Please check out our merch.
+    </div>
+</body>
+</html>

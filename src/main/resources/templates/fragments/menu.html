@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Title</title>
+</head>
+<body>
+<!-- The next line allows us to include the menu bar in other thymeleaf template files -->
+<div th:fragment="menu-bar">
+    <!-- Menu Bar -->
+    <nav class="menu-bar">
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/registerPage}">Register</a></li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
