@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <!-- Include the menu bar fragment -->
+  <div th:replace="~{fragments/menu :: menu-bar}"></div>
+  <p th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+  <div id="registerForm">
+    <form method="post" action="/register">
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username" required><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password" required><br>
+      <label for="confirmPass">Confirm your password:</label><br>
+      <input type="password" id="confirmPass" name="confirmPass" required><br>
+      <label for="first">First name:</label><br>
+      <input type="text" id="first" name="first"><br>
+      <label for="last">Last name:</label><br>
+      <input type="text" id="last" name="last"><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
