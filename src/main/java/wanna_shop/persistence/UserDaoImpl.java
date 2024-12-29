@@ -41,7 +41,6 @@ public class UserDaoImpl extends MySQLDao implements UserDao{
                 if(rs.next()){
                     result = User.builder()
                             .username(rs.getString("username"))
-                            .password(rs.getString("password"))
                             .email(rs.getString("email"))
                             .firstName(rs.getString("firstName"))
                             .lastName(rs.getString("lastName"))

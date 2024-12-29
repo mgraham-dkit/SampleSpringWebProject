@@ -15,4 +15,9 @@ public class IndexController {
     public String registration(){
         return "registration";
     }
+
+    @GetMapping("/loginPage")
+    public String login(){
+        return "login";
+    }
 }

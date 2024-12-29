@@ -12,7 +12,9 @@
     <nav class="menu-bar">
         <ul>
             <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/registerPage}">Register</a></li>
+            <li th:if="${#ctx.session.currentUser == null}"><a th:href="@{/loginPage}">Login</a></li>
+            <li th:if="${#ctx.session.currentUser == null}"><a th:href="@{/registerPage}">Register</a></li>
+            <li th:unless="${#ctx.session.currentUser == null}"><a th:href="@{/logout}">Logout</a></li>
         </ul>
     </nav>
 </div>
