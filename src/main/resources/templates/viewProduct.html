@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <meta charset="UTF-8">
+    <title>Product Info</title>
+</head>
+<body>
+<!-- Include the menu bar fragment -->
+<div th:replace="~{fragments/menu :: menu-bar}"></div>
+
+<div th:if="${product != null}">
+    <table>
+        <tr>
+            <td>Product Code:</td>
+            <td th:text="${product.productCode}"></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${product.productName}"></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td th:text="${product.productDescription}"></td>
+        </tr>
+        <tr>
+            <td>Quantity in Stock:</td>
+            <td th:text="${product.quantityInStock}"></td>
+        </tr>
+        <tr>
+            <td>Cost Price:</td>
+            <td th:text="${product.costPrice}"></td>
+        </tr>
+        <tr>
+            <td>Retail Price:</td>
+            <td th:text="${product.retailPrice}"></td>
+        </tr>
+        <tr> </tr>
+    </table>
+</div>
+<div th:unless="${product != null}">
+    <p th:text="|No product found matching product code ${prodCode}|"></p>
+</div>
+<a th:href="@{/viewProducts}">Back to Products</a>
+</body>
+</html>
