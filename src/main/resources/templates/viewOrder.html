@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <meta charset="UTF-8">
+    <title>Order Details</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            position: sticky;
+            top: 0;
+            background-color: #f4f4f4;
+            z-index: 1;
+        }
+
+        tbody {
+            display: block;
+            max-height: 300px; /* Set the desired height for scroll */
+            overflow-y: auto;
+        }
+
+        thead, tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+    </style>
+</head>
+<body>
+<!-- Include the menu bar fragment -->
+<div th:replace="~{fragments/menu :: menu-bar}"></div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order Line Number</th>
+            <th>Product Code</th>
+            <th>Quantity Ordered</th>
+            <th>Price Per Item</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="orderLine : ${orderLines}">
+
+            <td th:text="${orderLine.orderLineNumber}"></td>
+            <td><a th:href="@{/getProduct(productCode=${orderLine.productCode})}"
+                   th:text="${orderLine.productCode}"></a></td>
+            <td th:text="${orderLine.quantityOrdered}"></td>
+            <td th:text="${orderLine.priceEach}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
