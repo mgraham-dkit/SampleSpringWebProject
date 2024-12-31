@@ -11,12 +11,12 @@
     <!-- Menu Bar -->
     <nav class="menu-bar">
         <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/viewProducts}">View All Products</a></li>
-            <li th:if="${#ctx.session.currentUser == null}"><a th:href="@{/loginPage}">Login</a></li>
-            <li th:if="${#ctx.session.currentUser == null}"><a th:href="@{/registerPage}">Register</a></li>
-            <li th:unless="${#ctx.session.currentUser == null}"><a th:href="@{/userOrders}">My Orders</a></li>
-            <li th:unless="${#ctx.session.currentUser == null}"><a th:href="@{/logout}">Logout</a></li>
+            <li><a th:href="@{/}" th:text="#{menu.home}"></a></li>
+            <li><a th:href="@{/viewProducts}" th:text="#{menu.products}"></a></li>
+            <li th:if="${#ctx.session.currentUser == null}"><a th:href="@{/loginPage}" th:text="#{menu.login}"></a></li>
+            <li th:if="${#ctx.session.currentUser == null}"><a th:href="@{/registerPage}" th:text="#{menu.register}"></a></li>
+            <li th:unless="${#ctx.session.currentUser == null}"><a th:href="@{/userOrders}" th:text="#{menu.orders}"></a></li>
+            <li th:unless="${#ctx.session.currentUser == null}"><a th:href="@{/logout}" th:text="#{menu.logout}"></a></li>
         </ul>
     </nav>
     <div th:replace="~{fragments/language_menu :: language-menu-bar}"></div>

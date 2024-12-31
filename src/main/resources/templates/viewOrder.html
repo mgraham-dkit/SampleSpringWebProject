@@ -52,11 +52,11 @@
     <tbody>
         <tr th:each="orderLine : ${orderLines}">
 
-            <td th:text="${orderLine.orderLineNumber}"></td>
+            <td th:text="${#numbers.formatInteger(orderLine.orderLineNumber, 1)}"></td>
             <td><a th:href="@{/getProduct(productCode=${orderLine.productCode})}"
                    th:text="${orderLine.productCode}"></a></td>
-            <td th:text="${orderLine.quantityOrdered}"></td>
-            <td th:text="${orderLine.priceEach}"></td>
+            <td th:text="${#numbers.formatInteger(orderLine.quantityOrdered, 1)}"></td>
+            <td th:text="${#numbers.formatDecimal(orderLine.priceEach, 1, 2)}"></td>
         </tr>
     </tbody>
 </table>

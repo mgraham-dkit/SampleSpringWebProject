@@ -51,7 +51,7 @@
         <tr th:each="order : ${orders}">
             <td><a th:href="@{/getOrderDetails(orderNumber=${order.orderNumber})}"
                    th:text="${order.orderNumber}"></a></td>
-            <td th:text="${order.orderDate}"></td>
+            <td th:text="${#temporals.format(order.orderDate, #locale)}"></td>
         </tr>
     </tbody>
 </table>
