@@ -19,6 +19,7 @@
             <li th:unless="${#ctx.session.currentUser == null}"><a th:href="@{/logout}">Logout</a></li>
         </ul>
     </nav>
+    <div th:replace="~{fragments/language_menu :: language-menu-bar}"></div>
 </div>
 </body>
 </html>
