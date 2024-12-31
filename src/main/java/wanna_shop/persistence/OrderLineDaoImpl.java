@@ -50,14 +50,13 @@ public class OrderLineDaoImpl extends MySQLDao implements OrderLineDao{
     }
 
     private static OrderLine mapRow(ResultSet rs) throws SQLException {
-        OrderLine ol = OrderLine.builder()
+        return OrderLine.builder()
                 .orderNumber(rs.getInt("orderNumber"))
                 .productCode(rs.getString("productCode"))
                 .quantityOrdered(rs.getInt("quantityOrdered"))
                 .priceEach(rs.getDouble("priceEach"))
                 .orderLineNumber(rs.getInt("orderLineNumber"))
                 .build();
-        return ol;
     }
 
     public static void main(String[] args) {

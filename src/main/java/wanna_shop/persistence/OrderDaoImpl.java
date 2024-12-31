@@ -2,7 +2,6 @@ package wanna_shop.persistence;
 
 import lombok.extern.slf4j.Slf4j;
 import wanna_shop.model.Order;
-import wanna_shop.model.OrderLine;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,11 +45,10 @@ public class OrderDaoImpl extends MySQLDao implements OrderDao{
     }
 
     private static Order mapRow(ResultSet rs) throws SQLException {
-        Order o = Order.builder()
+        return Order.builder()
                 .orderNumber(rs.getInt("orderNumber"))
                 .username(rs.getString("username"))
                 .orderDate(rs.getTimestamp("orderDate").toLocalDateTime()).build();
-        return o;
     }
 
     @Override
